@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Day — To-Do List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="page-header">
+        <div class="header-top">
+          <div class="brand">
+            <span class="brand-dot"></span>
+            <h1>My Day</h1>
+          </div>
+          <p class="today-date" id="todayDate"></p>
+        </div>
+        <p class="tagline">
+          A simple list for the things you need to get done.
+        </p>
+      </header>
+
+      <section class="add-task-bar">
+        <input
+          type="text"
+          id="taskInput"
+          placeholder="What needs to be done?"
+          aria-label="New task"
+          maxlength="120"
+        />
+        <button id="addTaskBtn" type="button">+ Add Task</button>
+      </section>
+
+      <main class="task-board">
+        <section class="task-column" aria-labelledby="pendingHeading">
+          <div class="notebook-holes" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="column-inner">
+            <div class="column-header">
+              <h2 id="pendingHeading">Pending</h2>
+              <span class="count-badge pending-badge" id="pendingCount"
+                >0 pending</span
+              >
+            </div>
+            <ul class="task-list" id="pendingList"></ul>
+            <p class="empty-state" id="pendingEmpty">
+              You're all caught up! ✨
+            </p>
+          </div>
+        </section>
+
+        <section class="task-column" aria-labelledby="completedHeading">
+          <div class="notebook-holes" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="column-inner">
+            <div class="column-header">
+              <h2 id="completedHeading">Completed</h2>
+              <span class="count-badge completed-badge" id="completedCount"
+                >0 completed</span
+              >
+            </div>
+            <ul class="task-list" id="completedList"></ul>
+            <p class="empty-state" id="completedEmpty">
+              No completed tasks yet.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

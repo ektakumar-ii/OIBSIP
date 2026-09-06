@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator | OIBSIP Task 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="calculator-container">
+        <header class="calculator-header">
+            <span class="app-title">Calculator</span>
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle light and dark theme">
+                <span class="theme-icon" aria-hidden="true">☾</span>
+            </button>
+        </header>
+
+        <section class="display-section" aria-live="polite">
+            <div id="previous-display" class="previous-display"></div>
+            <div id="main-display" class="main-display">0</div>
+        </section>
+
+        <section class="keypad" aria-label="Calculator keypad">
+            <button class="btn btn-action" data-action="clear" aria-label="Clear all">C</button>
+            <button class="btn btn-action" data-action="delete" aria-label="Delete last digit">⌫</button>
+            <button class="btn btn-operator" data-action="operator" data-value="÷" aria-label="Divide">÷</button>
+            <button class="btn btn-operator" data-action="operator" data-value="×" aria-label="Multiply">×</button>
+
+            <button class="btn btn-num" data-value="7">7</button>
+            <button class="btn btn-num" data-value="8">8</button>
+            <button class="btn btn-num" data-value="9">9</button>
+            <button class="btn btn-operator" data-action="operator" data-value="−" aria-label="Subtract">−</button>
+
+            <button class="btn btn-num" data-value="4">4</button>
+            <button class="btn btn-num" data-value="5">5</button>
+            <button class="btn btn-num" data-value="6">6</button>
+            <button class="btn btn-operator" data-action="operator" data-value="+" aria-label="Add">+</button>
+
+            <button class="btn btn-num" data-value="1">1</button>
+            <button class="btn btn-num" data-value="2">2</button>
+            <button class="btn btn-num" data-value="3">3</button>
+            <button class="btn btn-equals span-two-rows" data-action="equals" aria-label="Equals">=</button>
+
+            <button class="btn btn-num span-two-cols" data-value="0">0</button>
+            <button class="btn btn-num" data-value="." aria-label="Decimal point">.</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

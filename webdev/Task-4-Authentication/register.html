@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="page">
+    <div class="card">
+
+      <div class="card-header">
+        <div class="card-logo">📝</div>
+        <h1>Create account</h1>
+        <p>Sign up to get started</p>
+      </div>
+
+      <div class="alert" id="alertBox"></div>
+
+      <form id="registerForm" novalidate>
+
+        <div class="form-group">
+          <label for="username">Username or Email</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="e.g. johndoe or john@email.com"
+            autocomplete="username"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrapper">
+            <input
+              type="password"
+              id="password"
+              placeholder="Create a strong password"
+              autocomplete="new-password"
+            />
+            <button type="button" class="toggle-password" id="togglePass" aria-label="Show/hide password">👁</button>
+          </div>
+          <div class="password-hints">
+            <span class="hint" id="hintLength">8+ characters</span>
+            <span class="hint" id="hintNumber">1 number</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <div class="input-wrapper">
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Repeat your password"
+              autocomplete="new-password"
+            />
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <button type="submit" class="btn btn-primary">Create Account</button>
+
+      </form>
+
+      <div class="card-footer">
+        Already have an account? <a href="login.html">Sign in</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    const form = document.getElementById("registerForm");
+    const alertBox = document.getElementById("alertBox");
+    const passwordInput = document.getElementById("password");
+    const togglePass = document.getElementById("togglePass");
+    const hintLength = document.getElementById("hintLength");
+    const hintNumber = document.getElementById("hintNumber");
+
+    togglePass.addEventListener("click", () => {
+      const isText = passwordInput.type === "text";
+      passwordInput.type = isText ? "password" : "text";
+      togglePass.textContent = isText ? "👁" : "🙈";
+    });
+
+    passwordInput.addEventListener("input", () => {
+      const val = passwordInput.value;
+      const hasLength = val.length >= 8;
+      const hasNumber = /\d/.test(val);
+
+      hintLength.className = "hint " + (val.length === 0 ? "" : hasLength ? "met" : "unmet");
+      hintNumber.className = "hint " + (val.length === 0 ? "" : hasNumber ? "met" : "unmet");
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      hideAlert(alertBox);
+
+      const username = document.getElementById("username").value.trim();
+      const password = passwordInput.value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      if (!username || !password || !confirmPassword) {
+        showAlert(alertBox, "All fields are required.");
+        return;
+      }
+
+      if (password.length < 8 || !/\d/.test(password)) {
+        showAlert(alertBox, "Password must be at least 8 characters and contain at least 1 number.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        showAlert(alertBox, "Passwords do not match.");
+        return;
+      }
+
+      const users = getUsers();
+      const alreadyExists = users.some(u => u.username.toLowerCase() === username.toLowerCase());
+      if (alreadyExists) {
+        showAlert(alertBox, "An account with this username/email already exists.");
+        return;
+      }
+
+      const passwordHash = await hashPassword(password);
+      users.push({ username, passwordHash });
+      saveUsers(users);
+
+      showAlert(alertBox, "Account created! Redirecting to login...", "success");
+      setTimeout(() => {
+        window.location.href = "login.html";
+      }, 1500);
+    });
+  </script>
+</body>
+</html>

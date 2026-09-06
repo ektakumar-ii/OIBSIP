@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard-page">
+
+  <header class="topbar">
+    <div class="topbar-brand">
+      <span>🔐</span> AuthApp
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-user">
+        Signed in as <strong id="displayUsername">–</strong>
+      </div>
+      <button class="btn-logout" id="logoutBtn">Sign out</button>
+    </div>
+  </header>
+
+  <main class="dashboard-content">
+
+    <div class="welcome-card">
+      <h2>Welcome back, <span id="welcomeName">–</span>! 👋</h2>
+      <p>You're successfully authenticated. This page is only accessible after logging in.</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">Username / Email</div>
+        <div class="value" id="infoUsername">–</div>
+      </div>
+      <div class="info-card">
+        <div class="label">Session status</div>
+        <div class="value" style="color: #16a34a;">● Active</div>
+      </div>
+      <div class="info-card">
+        <div class="label">Authentication</div>
+        <div class="value">SHA-256 hashed</div>
+      </div>
+    </div>
+
+    <div class="session-note">
+      <strong>About this project:</strong> This is a front-end-only demonstration built with HTML, CSS, and Vanilla JavaScript.
+      User accounts are stored in <code>localStorage</code> and passwords are hashed using the browser's Web Crypto API (SHA-256).
+      In a real application, authentication should always be handled server-side over HTTPS.
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    const currentUser = requireAuth();
+
+    document.getElementById("displayUsername").textContent = currentUser;
+    document.getElementById("welcomeName").textContent = currentUser;
+    document.getElementById("infoUsername").textContent = currentUser;
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      clearSession();
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>
