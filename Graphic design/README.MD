@@ -6,16 +6,14 @@ The tasks gave me an opportunity to work on different types of visual content an
 
 ## Projects
 
-- Posters & Fliers
-- Logo Design
-- Business Card Design
-- Infographic
-- Magazine/Brochure Design
+* Posters & Fliers
+* Logo Design
+* Business Card Design
+* Infographic
 
 ## Tools Used
 
-- Canva
-- Figma
+* Figma
 
 ## Image Sources
 

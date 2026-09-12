@@ -27,15 +27,14 @@ OIBSIP/
 
 ### Web Development
 
-* HTML
-* CSS
-* JavaScript
-* Git and GitHub
+- HTML
+- CSS
+- JavaScript
+- Git and GitHub
 
 ### Graphic Design
 
-* Canva
-* Figma
+- Figma
 
 Each track and task is organized into separate folders to keep the work easy to navigate.
 
